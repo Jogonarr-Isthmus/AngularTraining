@@ -1,0 +1,7 @@
+<h2 class="col-5">Usuarios</h2>
+<mat-grid-list cols="5" rowHeight="300px" gutterSize="10" role="list">
+    <mat-grid-tile role="listitem" *ngFor="let user of users">
+        <app-user-display [user]='user' (deleteUser)="deleteUser($event)" (editUser)="editUser($event)">
+        </app-user-display>
+    </mat-grid-tile>
+</mat-grid-list>
