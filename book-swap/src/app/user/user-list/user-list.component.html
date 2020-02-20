@@ -1,0 +1,72 @@
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <!-- UserName Column -->
+    <ng-container matColumnDef="userName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.userName}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <!-- LastName Column -->
+    <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <button mat-icon-button mat-raised-button color="primary" (click)="onEdit(element)" [disabled]="isEditing">
+                <mat-icon>edit</mat-icon>
+            </button>
+            &nbsp;
+            <button mat-icon-button mat-raised-button color="warn" (click)="onDelete(element.key)"
+                [disabled]="isDeleting">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <mat-spinner color="warn" [diameter]="30" *ngIf="isDeleting"></mat-spinner>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<!-- 
+<mat-grid-tile-header>
+    User: {{user.id}}
+</mat-grid-tile-header>
+<mat-form-field>
+    <mat-label>Nombre:</mat-label>
+    <input matInput placeholder="Nombre" [value]="user.name">
+</mat-form-field>
+<br />
+<mat-form-field>
+    <mat-label>Apellido:</mat-label>
+    <input matInput placeholder="Apellido" [value]="user.lastName">
+</mat-form-field>
+<br />
+<mat-form-field>
+    <mat-label>Correo:</mat-label>
+    <input matInput placeholder="Correo" [value]="user.email">
+</mat-form-field>
+<mat-grid-tile-footer>
+    <button mat-button mat-raised-button color="accent" (click)="edit()">Editar</button>
+    <button mat-button mat-raised-button color="warn" (click)="delete()" [disabled]="isDeleting">
+        <span>Eliminar</span>
+    </button>
+    <mat-spinner color="warn" [diameter]="30" *ngIf="isDeleting"></mat-spinner>
+</mat-grid-tile-footer> -->
