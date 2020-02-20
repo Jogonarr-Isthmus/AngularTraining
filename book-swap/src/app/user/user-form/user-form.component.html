@@ -6,6 +6,9 @@
                     User: {{!selectedUser.key ? 'New' : selectedUser.key}}
                 </span>
                 <mat-divider [vertical]="true"></mat-divider>
+                <button type="button" mat-icon-button mat-raised-button *ngIf="!selectedUser.key">
+                    <mat-icon color="accent">add_circle</mat-icon>
+                </button>
                 <button type="button" mat-icon-button mat-raised-button color="warn" [disabled]="isDeleting"
                     *ngIf="selectedUser.key" (click)="delete()">
                     <mat-icon>delete</mat-icon>
