@@ -18,14 +18,13 @@ export class UserDisplayComponent implements OnInit {
   ngOnInit() {
   }
 
+  edit() {
+    this.editUser.emit(this.user);
+  }
+
   delete() {
     this.isDeleting = true;
     this.deleteUser.emit(this.user);
-    //this.isDeleting = false;
-  }
-
-  edit() {
-    this.editUser.emit(this.user);
   }
 
 }
