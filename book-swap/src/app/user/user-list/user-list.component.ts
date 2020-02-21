@@ -17,7 +17,6 @@ export class UserListComponent implements OnInit {
   @Output() delete = new EventEmitter<string>();
   @Output() edit = new EventEmitter<User>();
 
-  private selectedUser: User;
   public isEditing = false;
   public isDeleting = false;
 

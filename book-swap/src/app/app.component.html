@@ -17,7 +17,7 @@
         <a mat-list-item routerLink="/Home" routerLinkActive="active" (click)="snav.toggle()">
           <mat-icon>home</mat-icon><span>Home</span>
         </a>
-        <a mat-list-item routerLink="/Users" routerLinkActive="active" (click)="snav.toggle()">
+        <a mat-list-item routerLink="/Users" routerLinkActive="active" (click)="snav.toggle()" *ngIf="userIsLoggedIn">
           <mat-icon>account_circle</mat-icon><span>Users</span>
         </a>
         <a mat-list-item routerLink="/About" routerLinkActive="active" (click)="snav.toggle()">

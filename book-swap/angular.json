@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "book-swap"
+  "defaultProject": "book-swap",
+  "cli": {
+    "analytics": false
+  }
 }

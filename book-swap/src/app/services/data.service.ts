@@ -16,6 +16,13 @@ export class DataService {
   }
 
   // Return a single observable item
+  getToken(): Observable<any> {
+    return this.dbContext
+      .object('/Token')
+      .valueChanges();
+  }
+
+  // Return a single observable item
   get(tableName: string, key: string): Observable<any> {
     return this.dbContext
       .object(`/${tableName}/${key}`)
