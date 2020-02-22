@@ -16,13 +16,6 @@ export class DataService {
   }
 
   // Return a single observable item
-  getToken(): Observable<any> {
-    return this.dbContext
-      .object('/Token')
-      .valueChanges();
-  }
-
-  // Return a single observable item
   get(tableName: string, key: string): Observable<any> {
     return this.dbContext
       .object(`/${tableName}/${key}`)
@@ -51,7 +44,7 @@ export class DataService {
   }
 
   // Create a new item
-  create(tableName: string, record: any): Promise<any> {
+  private create(tableName: string, record: any): Promise<any> {
     return this.getTable(tableName)
       .push(record)
       .then((response: any) => {
@@ -65,7 +58,7 @@ export class DataService {
   }
 
   // Update an existing item
-  update(tableName: string, key: string, record: any): Promise<void> {
+  private update(tableName: string, key: string, record: any): Promise<void> {
     return this.getTable(tableName)
       .update(key, record)
       .then((response: any) => {

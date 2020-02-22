@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +11,23 @@ export class AppComponent implements OnInit {
   title = 'book-swap';
   userIsLoggedIn = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.authService.getUserIsLoggedIn()
       .subscribe(
         response => {
           this.userIsLoggedIn = response;
+        }
+      );
+  }
+
+  logOut() {
+    this.authService.logoutUser()
+      .subscribe(
+        response => {
+          this.userIsLoggedIn = false;
+          this.router.navigate(['Login']);
         }
       );
   }

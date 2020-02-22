@@ -31,8 +31,7 @@ export class UserListComponent implements OnInit {
       value => {
         this.dataSource = new MatTableDataSource(value);
         this.dataSource.sort = this.sort;
-      }
-    );
+      });
   }
 
   applyFilter(filterValue: string) {

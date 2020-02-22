@@ -1,1 +1,46 @@
-<p>login works!</p>
+<form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+    <mat-grid-list cols="1" rowHeight="225px" gutterSize="10" role="list">
+        <mat-grid-tile role="listitem">
+            <mat-grid-tile-header>
+                <span class="tile-header">
+                    Login
+                </span>
+                <mat-divider [vertical]="true"></mat-divider>
+                <button type="button" mat-icon-button mat-raised-button color="accent">
+                    <mat-icon>account_circle</mat-icon>
+                </button>
+                <mat-spinner color="warn" [diameter]="30" *ngIf="isDeleting"></mat-spinner>
+            </mat-grid-tile-header>
+            <div class="full-width">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Usuario / Email</mat-label>
+                    <input matInput type="text" formControlName="userName">
+                    <mat-error *ngIf="loginForm.controls['userName'].hasError('required')">
+                        El usuario es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+                    <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+                        La contraseña es <strong>requerida</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <mat-grid-tile-footer>
+                <span class="tile-footer">
+                    &nbsp;
+                </span>
+                <button type="submit" mat-button mat-raised-button color="accent"
+                    [disabled]="loginForm.invalid || isLogginIn">
+                    Login
+                </button>
+                <mat-spinner color="accent" [diameter]="30" *ngIf="isLogginIn"></mat-spinner>
+            </mat-grid-tile-footer>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>

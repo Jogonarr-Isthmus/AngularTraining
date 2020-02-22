@@ -50,7 +50,6 @@ export class UserComponent implements OnInit {
   }
 
   public onSave(form: any) {
-    console.log('onSave.form =', form);
     this.dataService.save(this.tableName, form.value)
       .then((response: any) => {
         this.hideForm(form);

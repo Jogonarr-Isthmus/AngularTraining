@@ -27,6 +27,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     return this.authService.getUserIsLoggedIn()
       .pipe(map(userIsLoggedIn => {
         if (!userIsLoggedIn) {
+          console.log('redirecting to Login...');
           return this.router.parseUrl('/Login');
         }
 
