@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -11,25 +12,28 @@ export class AppComponent implements OnInit {
   title = 'book-swap';
   userIsLoggedIn = false;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {
+    router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    )
+      .subscribe((event: NavigationEnd) => {
+        this.checkUserIsLoggedIn();
+      });
+  }
 
   ngOnInit() {
+    this.checkUserIsLoggedIn();
+  }
+
+  checkUserIsLoggedIn() {
     this.authService.getUserIsLoggedIn()
-      .subscribe(
-        response => {
-          this.userIsLoggedIn = response;
-        }
-      );
+      .subscribe((response: boolean) => this.userIsLoggedIn = response);
   }
 
   logOut() {
-    this.authService.logoutUser()
-      .subscribe(
-        response => {
-          this.userIsLoggedIn = false;
-          this.router.navigate(['Login']);
-        }
-      );
+    this.authService.logoutUser();
+    console.log('Redirecting to Login...');
+    this.router.navigate(['Login']);
   }
 
 }

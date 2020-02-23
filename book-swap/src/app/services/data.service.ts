@@ -19,16 +19,19 @@ export class DataService {
   get(tableName: string, key: string): Observable<any> {
     return this.dbContext
       .object(`/${tableName}/${key}`)
-      .valueChanges();
+      .valueChanges()
+      .pipe(
+        map((record: any) => record ? ({ key, ...record }) : record)
+      );
   }
 
   // Return a list of observable item
   getAll(tableName: string): Observable<any[]> {
     return this.getTable(tableName)
       .snapshotChanges()
-      .pipe(map(records =>
-        records.map(record => ({ key: record.key, ...record.payload.val() as any }))
-      ));
+      .pipe(
+        map((records: any[]) => records.map(record => record ? ({ key: record.key, ...record.payload.val() as any }) : record))
+      );
   }
 
   // Save single item

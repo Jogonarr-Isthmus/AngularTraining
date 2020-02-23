@@ -35,11 +35,11 @@
                 <span class="tile-footer">
                     &nbsp;
                 </span>
-                <button type="submit" mat-button mat-raised-button color="accent"
-                    [disabled]="loginForm.invalid || isLogginIn">
+                <button type="submit" mat-button mat-raised-button color="accent" *ngIf="!isLoggedIn"
+                    [disabled]="loginForm.invalid || isLoggingIn">
                     Login
                 </button>
-                <mat-spinner color="accent" [diameter]="30" *ngIf="isLogginIn"></mat-spinner>
+                <mat-spinner color="accent" [diameter]="30" *ngIf="isLoggingIn"></mat-spinner>
             </mat-grid-tile-footer>
         </mat-grid-tile>
     </mat-grid-list>

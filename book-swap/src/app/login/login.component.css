@@ -14,3 +14,8 @@
 .tile-header, .tile-footer {
     flex: 1 1 auto;
 }
+
+::ng-deep snack-bar-container.snack-bar-color {
+    background-color: rgb(231, 85, 85);
+    color: maroon;
+  }

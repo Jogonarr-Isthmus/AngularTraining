@@ -25,14 +25,16 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.authService.getUserIsLoggedIn()
-      .pipe(map(userIsLoggedIn => {
-        if (!userIsLoggedIn) {
-          console.log('redirecting to Login...');
-          return this.router.parseUrl('/Login');
-        }
+      .pipe(
+        map((userIsLoggedIn: boolean) => {
+          if (!userIsLoggedIn) {
+            console.log('Redirecting to Login...');
+            return this.router.parseUrl('/Login');
+          }
 
-        return true;
-      }));
+          return userIsLoggedIn;
+        })
+      );
   }
 
   canActivateChild(
