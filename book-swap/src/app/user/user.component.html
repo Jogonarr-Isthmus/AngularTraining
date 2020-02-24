@@ -1,11 +1,13 @@
 <h2 class="col-5">Usuarios</h2>
 <div class="maintenance-actions" *ngIf="!editing">
-    <button mat-button mat-raised-button color="accent" (click)="onCreate()">
+    <button mat-button mat-raised-button color="accent" (click)="onCreate()" matTooltip="Create new user"
+        [matTooltipPosition]="'below'">
         <mat-icon>add_circle</mat-icon>
         New
     </button>
     &nbsp;
-    <button mat-button mat-raised-button color="warn" (click)="onDeleteAll()">
+    <button mat-button mat-raised-button color="warn" (click)="onDeleteAll()" matTooltip="Delete all users"
+        [matTooltipPosition]="'below'">
         <mat-icon>delete_sweep</mat-icon>
         Delete All
     </button>

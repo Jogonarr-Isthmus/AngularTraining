@@ -30,12 +30,13 @@
     <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
         <mat-cell *matCellDef="let element">
-            <button mat-icon-button mat-raised-button color="primary" (click)="onEdit(element)" [disabled]="isEditing">
+            <button mat-icon-button mat-raised-button color="primary" (click)="onEdit(element)" [disabled]="isEditing"
+                matTooltip="Edit user" [matTooltipPosition]="'below'">
                 <mat-icon>edit</mat-icon>
             </button>
             &nbsp;
             <button mat-icon-button mat-raised-button color="warn" (click)="onDelete(element.key)"
-                [disabled]="isDeleting">
+                [disabled]="isDeleting" matTooltip="Delete user" [matTooltipPosition]="'below'">
                 <mat-icon>delete</mat-icon>
             </button>
             <mat-spinner color="warn" [diameter]="30" *ngIf="isDeleting"></mat-spinner>

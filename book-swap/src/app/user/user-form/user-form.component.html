@@ -10,7 +10,7 @@
                     <mat-icon color="accent">add_circle</mat-icon>
                 </button>
                 <button type="button" mat-icon-button mat-raised-button color="warn" [disabled]="isDeleting"
-                    *ngIf="selectedUser.key" (click)="delete()">
+                    *ngIf="selectedUser.key" (click)="delete()" matTooltip="Delete user" [matTooltipPosition]="'below'">
                     <mat-icon>delete</mat-icon>
                 </button>
                 <mat-spinner color="warn" [diameter]="30" *ngIf="isDeleting"></mat-spinner>
