@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { User } from '../models/user';
 import { DataService } from '../services/data.service';
-import { Observable } from 'rxjs';
+import { EncryptionService } from '../services/encryption.service';
 
 @Component({
   selector: 'app-user',
@@ -15,7 +17,7 @@ export class UserComponent implements OnInit {
   public selectedUser: User;
   public editing: boolean;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private encryptionService: EncryptionService) { }
 
   ngOnInit() {
     this.editing = false;
@@ -28,6 +30,10 @@ export class UserComponent implements OnInit {
 
   private showForm(user: User) {
     this.selectedUser = user;
+    if (this.selectedUser.password) {
+      this.selectedUser.password = this.encryptionService.decrypt(this.selectedUser.password);
+    }
+
     this.editing = true;
   }
 
@@ -50,7 +56,13 @@ export class UserComponent implements OnInit {
   }
 
   public onSave(form: any) {
-    this.dataService.save(this.tableName, form.value)
+    const userToSave = form.value;
+
+    if (userToSave.password) {
+      userToSave.password = this.encryptionService.encrypt(userToSave.password);
+    }
+
+    this.dataService.save(this.tableName, userToSave)
       .then((response: any) => {
         this.hideForm(form);
       });

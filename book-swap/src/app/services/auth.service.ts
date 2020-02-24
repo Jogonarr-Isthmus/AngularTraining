@@ -3,20 +3,22 @@ import { DataService } from './data.service';
 import { Observable } from 'rxjs';
 import { map, mergeMap, take } from 'rxjs/operators';
 import { User } from '../models/user';
+import { EncryptionService } from './encryption.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private encryptionService: EncryptionService) { }
 
   loginUser(loginInfo: any): Observable<any> {
     return this.dataService.getAll('User')
       .pipe(
         map(users => {
           const matchedUsers = users.filter(user =>
-            (user.userName === loginInfo.userName || user.email === loginInfo.userName) && user.password === loginInfo.password
+            (user.userName === loginInfo.userName || user.email === loginInfo.userName)
+            && this.encryptionService.decrypt(user.password) === loginInfo.password
           );
 
           const matchedUser = matchedUsers.length > 0

@@ -26,15 +26,16 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { environment } from '../environments/environment';
 import { UserComponent } from './user/user.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserFormComponent } from './user/user-form/user-form.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
+import { EncryptionService } from './services/encryption.service';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,7 @@ import { LoginComponent } from './login/login.component';
     MatSnackBarModule,
     MatTooltipModule
   ],
-  providers: [MatDatepickerModule],
+  providers: [MatDatepickerModule, EncryptionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

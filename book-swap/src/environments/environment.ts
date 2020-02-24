@@ -13,9 +13,14 @@ const firebaseConfig = {
   measurementId: 'G-B0SEP0F8ET'
 };
 
+const encryption = {
+  secretKey: 'Secret#Vito@123'
+};
+
 export const environment = {
   production: false,
-  firebaseConfig
+  firebaseConfig,
+  encryption
 };
 
 /*
