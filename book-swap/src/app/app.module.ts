@@ -27,25 +27,31 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { environment } from '../environments/environment';
+import { EncryptionService } from './services/encryption.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 import { UserComponent } from './user/user.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserFormComponent } from './user/user-form/user-form.component';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './login/login.component';
-import { EncryptionService } from './services/encryption.service';
+import { BookComponent } from './book/book.component';
+import { BookListComponent } from './book/book-list/book-list.component';
+import { BookFormComponent } from './book/book-form/book-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    HomeComponent,
+    AboutComponent,
     UserComponent,
     UserListComponent,
     UserFormComponent,
-    HomeComponent,
-    AboutComponent,
-    LoginComponent
+    BookComponent,
+    BookListComponent,
+    BookFormComponent
   ],
   imports: [
     BrowserModule,

@@ -3,30 +3,30 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 
-import { User } from '../../models/user';
+import { Book } from '../../models/book';
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  selector: 'app-book-list',
+  templateUrl: './book-list.component.html',
+  styleUrls: ['./book-list.component.css']
 })
-export class UserListComponent implements OnInit {
+export class BookListComponent implements OnInit {
 
-  @Input() users: Observable<User[]>;
+  @Input() books: Observable<Book[]>;
   @Output() delete = new EventEmitter<string>();
-  @Output() edit = new EventEmitter<User>();
+  @Output() edit = new EventEmitter<Book>();
 
   public isEditing = false;
   public isDeleting = false;
 
-  public dataSource: MatTableDataSource<User>;
-  public displayedColumns: string[] = ['userName', 'name', 'lastName', 'email', 'actions'];
+  public dataSource: MatTableDataSource<Book>;
+  public displayedColumns: string[] = ['name', 'author', 'genre', 'format', 'condition', 'price', 'location', 'actions'];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor() { }
 
   ngOnInit() {
-    this.users.subscribe(
+    this.books.subscribe(
       value => {
         this.dataSource = new MatTableDataSource(value);
         this.dataSource.sort = this.sort;
@@ -37,9 +37,9 @@ export class UserListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onEdit(user: User) {
+  onEdit(book: Book) {
     this.isEditing = true;
-    this.edit.emit(user);
+    this.edit.emit(book);
   }
 
   onDelete(key: string) {

@@ -46,28 +46,3 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
-<!-- 
-<mat-grid-tile-header>
-    User: {{user.id}}
-</mat-grid-tile-header>
-<mat-form-field>
-    <mat-label>Nombre:</mat-label>
-    <input matInput placeholder="Nombre" [value]="user.name">
-</mat-form-field>
-<br />
-<mat-form-field>
-    <mat-label>Apellido:</mat-label>
-    <input matInput placeholder="Apellido" [value]="user.lastName">
-</mat-form-field>
-<br />
-<mat-form-field>
-    <mat-label>Correo:</mat-label>
-    <input matInput placeholder="Correo" [value]="user.email">
-</mat-form-field>
-<mat-grid-tile-footer>
-    <button mat-button mat-raised-button color="accent" (click)="edit()">Editar</button>
-    <button mat-button mat-raised-button color="warn" (click)="delete()" [disabled]="isDeleting">
-        <span>Eliminar</span>
-    </button>
-    <mat-spinner color="warn" [diameter]="30" *ngIf="isDeleting"></mat-spinner>
-</mat-grid-tile-footer> -->

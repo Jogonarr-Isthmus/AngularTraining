@@ -1,0 +1,103 @@
+<form class="form" [formGroup]="bookForm" (ngSubmit)="onSubmit()" novalidate>
+    <mat-grid-list cols="1" rowHeight="525px" gutterSize="10" role="list">
+        <mat-grid-tile role="listitem">
+            <mat-grid-tile-header>
+                <span class="tile-header">
+                    Book: {{!selectedBook.key ? 'New' : selectedBook.key}}
+                </span>
+                <mat-divider [vertical]="true"></mat-divider>
+                <button type="button" mat-icon-button mat-raised-button *ngIf="!selectedBook.key">
+                    <mat-icon color="accent">add_circle</mat-icon>
+                </button>
+                <button type="button" mat-icon-button mat-raised-button color="warn" [disabled]="isDeleting"
+                    *ngIf="selectedBook.key" (click)="delete()" matTooltip="Delete book" [matTooltipPosition]="'below'">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <mat-spinner color="warn" [diameter]="30" *ngIf="isDeleting"></mat-spinner>
+            </mat-grid-tile-header>
+            <div class="full-width">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" formControlName="name">
+                    <mat-error *ngIf="bookForm.controls['name'].hasError('required')">
+                        The name <strong>is required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Author</mat-label>
+                    <input matInput [type]="text" formControlName="author">
+                    <mat-error *ngIf="bookForm.controls['author'].hasError('required')">
+                        The author <strong>is required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Genre</mat-label>
+                    <mat-select formControlName="genre">
+                        <mat-option *ngFor="let option of genreOptions" [value]="option.value">
+                            {{option.text}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="bookForm.controls['genre'].hasError('required')">
+                        The genre <strong>is required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Format</mat-label>
+                    <mat-select formControlName="format">
+                        <mat-option *ngFor="let option of formatOptions" [value]="option.value">
+                            {{option.text}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="bookForm.controls['format'].hasError('required')">
+                        The format <strong>is required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Condition</mat-label>
+                    <mat-select formControlName="condition">
+                        <mat-option value="New">New</mat-option>
+                        <mat-optgroup *ngFor="let group of usedConditionOptions" [label]="group.name"
+                            [disabled]="group.disabled">
+                            <mat-option *ngFor="let option of group.options" [value]="option.value">
+                                {{option.text}}
+                            </mat-option>
+                        </mat-optgroup>
+                    </mat-select>
+                    <mat-error *ngIf="bookForm.controls['condition'].hasError('required')">
+                        The condition <strong>is required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Price</mat-label>
+                    <span matPrefix>$&nbsp;</span>
+                    <input matInput type="number" formControlName="price">
+                    <mat-error *ngIf="bookForm.controls['price'].hasError('required')">
+                        The price <strong>is required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Location</mat-label>
+                    <input matInput type="text" formControlName="location">
+                    <mat-icon matSuffix>location_on</mat-icon>
+                    <mat-error *ngIf="bookForm.controls['location'].hasError('required')">
+                        The location <strong>is required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <mat-grid-tile-footer>
+                <span class="tile-footer">
+                    &nbsp;
+                </span>
+                <button type="submit" mat-button mat-raised-button color="accent"
+                    [disabled]="bookForm.invalid || isSaving">
+                    Save
+                </button>
+                <mat-spinner color="accent" [diameter]="30" *ngIf="isSaving"></mat-spinner>
+                &nbsp;
+                <button type="reset" mat-button mat-raised-button color="primary" (click)="onCancel()">
+                    Cancel
+                </button>
+            </mat-grid-tile-footer>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>
