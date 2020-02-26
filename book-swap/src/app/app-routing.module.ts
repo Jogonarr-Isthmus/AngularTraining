@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { UserComponent } from './user/user.component';
 import { BookComponent } from './book/book.component';
+import { ReviewComponent } from './review/review.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,11 @@ const routes: Routes = [
   {
     path: 'Books',
     component: BookComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'Reviews',
+    component: ReviewComponent,
     canActivate: [AuthGuard]
   },
   {

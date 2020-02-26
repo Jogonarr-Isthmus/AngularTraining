@@ -1,0 +1,69 @@
+<form class="form" [formGroup]="reviewForm" (ngSubmit)="onSubmit()" novalidate>
+    <mat-grid-list cols="1" rowHeight="375px" gutterSize="10" role="list">
+        <mat-grid-tile role="listitem">
+            <mat-grid-tile-header>
+                <span class="tile-header">
+                    Review: {{!selectedReview.key ? 'New' : selectedReview.key}}
+                </span>
+                <mat-divider [vertical]="true"></mat-divider>
+                <button type="button" mat-icon-button mat-raised-button *ngIf="!selectedReview.key">
+                    <mat-icon color="accent">add_circle</mat-icon>
+                </button>
+                <button type="button" mat-icon-button mat-raised-button color="warn" [disabled]="isDeleting"
+                    *ngIf="selectedReview.key" (click)="onDelete()" matTooltip="Delete review"
+                    [matTooltipPosition]="'below'">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <mat-spinner color="warn" [diameter]="30" *ngIf="isDeleting"></mat-spinner>
+            </mat-grid-tile-header>
+            <div class="full-width">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Book</mat-label>
+                    <mat-select formControlName="bookName">
+                        <mat-option *ngFor="let option of bookOptions" [value]="option.value">
+                            {{option.text}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="reviewForm.controls['bookName'].hasError('required')">
+                        The book <strong>is required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <div class="matFieldStyles">
+                    <mat-label>Rating</mat-label>
+                    <ngx-stars color="gold" size="2" [initialStars]="selectedReview.starRating"
+                        (ratingOutput)="onRatingSet($event)">
+                    </ngx-stars>
+                    <mat-error *ngIf="reviewForm.controls['starRating'].hasError('required')">
+                        The star rating <strong>is required</strong>
+                    </mat-error>
+                </div>
+                <mat-divider></mat-divider>
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Title</mat-label>
+                    <input matInput type="text" formControlName="title">
+                    <mat-error *ngIf="reviewForm.controls['title'].hasError('required')">
+                        The title <strong>is required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Review</mat-label>
+                    <input matInput type="text" formControlName="review">
+                </mat-form-field>
+            </div>
+            <mat-grid-tile-footer>
+                <span class="tile-footer">
+                    &nbsp;
+                </span>
+                <button type="submit" mat-button mat-raised-button color="accent"
+                    [disabled]="reviewForm.invalid || isSaving">
+                    Save
+                </button>
+                <mat-spinner color="accent" [diameter]="30" *ngIf="isSaving"></mat-spinner>
+                &nbsp;
+                <button type="reset" mat-button mat-raised-button color="primary" (click)="onCancel()">
+                    Cancel
+                </button>
+            </mat-grid-tile-footer>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>

@@ -27,6 +27,7 @@ export class AuthService {
 
           if (matchedUser) {
             localStorage.setItem('loggedInUserKey', JSON.stringify(matchedUser.key));
+            localStorage.setItem('loggedInUserFullName', JSON.stringify(`${matchedUser.name} ${matchedUser.lastName}`));
           }
 
           // console.log('loginUser().matchedUser =', matchedUser);

@@ -26,6 +26,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { NgxStarsModule } from 'ngx-stars';
+
 import { environment } from '../environments/environment';
 import { EncryptionService } from './services/encryption.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +41,9 @@ import { UserFormComponent } from './user/user-form/user-form.component';
 import { BookComponent } from './book/book.component';
 import { BookListComponent } from './book/book-list/book-list.component';
 import { BookFormComponent } from './book/book-form/book-form.component';
+import { ReviewComponent } from './review/review.component';
+import { ReviewListComponent } from './review/review-list/review-list.component';
+import { ReviewFormComponent } from './review/review-form/review-form.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +56,10 @@ import { BookFormComponent } from './book/book-form/book-form.component';
     UserFormComponent,
     BookComponent,
     BookListComponent,
-    BookFormComponent
+    BookFormComponent,
+    ReviewComponent,
+    ReviewListComponent,
+    ReviewFormComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +87,8 @@ import { BookFormComponent } from './book/book-form/book-form.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    NgxStarsModule
   ],
   providers: [MatDatepickerModule, EncryptionService],
   bootstrap: [AppComponent]

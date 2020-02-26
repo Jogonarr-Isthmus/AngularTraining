@@ -1,0 +1,23 @@
+<h2 class="col-5">Reviews</h2>
+<div class="maintenance-actions" *ngIf="!editing">
+    <button mat-button mat-raised-button color="accent" (click)="onCreate()" matTooltip="Create new review"
+        [matTooltipPosition]="'below'">
+        <mat-icon>add_circle</mat-icon>
+        New
+    </button>
+    &nbsp;
+    <button mat-button mat-raised-button color="warn" (click)="onDeleteAll()" matTooltip="Delete all reviews"
+        [matTooltipPosition]="'below'">
+        <mat-icon>delete_sweep</mat-icon>
+        Delete All
+    </button>
+</div>
+<div class="reviewList" *ngIf="!editing">
+    <app-review-list [reviews]='reviews' (edit)="onEdit($event)" (delete)="onDeleteByKey($event)">
+    </app-review-list>
+</div>
+<div *ngIf="editing">
+    <app-review-form [selectedReview]="selectedReview" (save)="onSave($event)" (delete)="onDelete($event)"
+        (cancel)="onCancel($event)">
+    </app-review-form>
+</div>

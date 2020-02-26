@@ -10,67 +10,68 @@
                     <mat-icon color="accent">add_circle</mat-icon>
                 </button>
                 <button type="button" mat-icon-button mat-raised-button color="warn" [disabled]="isDeleting"
-                    *ngIf="selectedUser.key" (click)="delete()" matTooltip="Delete user" [matTooltipPosition]="'below'">
+                    *ngIf="selectedUser.key" (click)="onDelete()" matTooltip="Delete user"
+                    [matTooltipPosition]="'below'">
                     <mat-icon>delete</mat-icon>
                 </button>
                 <mat-spinner color="warn" [diameter]="30" *ngIf="isDeleting"></mat-spinner>
             </mat-grid-tile-header>
             <div class="full-width">
                 <mat-form-field class="full-width" appearance="fill">
-                    <mat-label>Usuario</mat-label>
+                    <mat-label>Username</mat-label>
                     <input matInput type="text" formControlName="userName">
                     <mat-error *ngIf="userForm.controls['userName'].hasError('required')">
-                        El usuario es <strong>requerido</strong>
+                        The username <strong>is required</strong>
                     </mat-error>
                     <mat-error *ngIf="userForm.controls['userName'].hasError('minlength')">
-                        El usuario <strong>debe tener al menos 6 caracteres</strong>
+                        The username <strong>must have at least 6 characters</strong>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="full-width" appearance="fill">
-                    <mat-label>Contraseña</mat-label>
+                    <mat-label>Password</mat-label>
                     <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
                     <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
                         [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
                         <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                     <mat-error *ngIf="userForm.controls['password'].hasError('required')">
-                        La contraseña es <strong>requerida</strong>
+                        The password <strong>is required</strong>
                     </mat-error>
                     <mat-error *ngIf="userForm.controls['password'].hasError('minlength')">
-                        La contraseña <strong>debe tener al menos 6 caracteres</strong>
+                        The password <strong>must have at least 6 characters</strong>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="full-width" appearance="fill">
-                    <mat-label>Nombre</mat-label>
+                    <mat-label>Name</mat-label>
                     <input matInput type="text" formControlName="name">
                     <mat-error *ngIf="userForm.controls['name'].hasError('required')">
-                        El nombre es <strong>requerido</strong>
+                        The name <strong>is required</strong>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="full-width" appearance="fill">
-                    <mat-label>Apellido</mat-label>
+                    <mat-label>Last Name</mat-label>
                     <input matInput type="text" formControlName="lastName">
                     <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">
-                        El apellido es <strong>requerido</strong>
+                        The last name <strong>is required</strong>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="full-width" appearance="fill">
-                    <mat-label>Fecha Nacimiento</mat-label>
+                    <mat-label>Birth date</mat-label>
                     <input matInput [matDatepicker]="birthDatePicker" formControlName="birthDate">
                     <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
                     <mat-datepicker #birthDatePicker></mat-datepicker>
                     <mat-error *ngIf="userForm.controls['birthDate'].hasError('required')">
-                        La fecha de nacimiento es <strong>requerida</strong>
+                        The birth date <strong>is required</strong>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="full-width" appearance="fill">
                     <mat-label>Email</mat-label>
                     <input matInput type="text" formControlName="email">
                     <mat-error *ngIf="userForm.controls['email'].hasError('required')">
-                        El email es <strong>requerido</strong>
+                        The email <strong>is required</strong>
                     </mat-error>
                     <mat-error *ngIf="userForm.controls['email'].hasError('email')">
-                        El email <strong>no ses válido</strong>. Ejemplo: nombre@compañia.com
+                        The email <strong>isn't valid</strong>. Example: name@company.com
                     </mat-error>
                 </mat-form-field>
             </div>

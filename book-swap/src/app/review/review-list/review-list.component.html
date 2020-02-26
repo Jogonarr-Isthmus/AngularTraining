@@ -1,0 +1,57 @@
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <!-- Book Column -->
+    <ng-container matColumnDef="bookName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Book </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.bookName}} </mat-cell>
+    </ng-container>
+
+    <!-- Stars Column -->
+    <ng-container matColumnDef="starRating">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Rating </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <ngx-stars color="gold" size="2" readonly="true" [initialStars]="element.starRating">
+            </ngx-stars>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+    </ng-container>
+
+    <!-- Review Column -->
+    <ng-container matColumnDef="review">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Review </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.review}} </mat-cell>
+    </ng-container>
+
+    <!-- User Column -->
+    <ng-container matColumnDef="userFullName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> User </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.userFullName}} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <button mat-icon-button mat-raised-button color="primary" (click)="onEdit(element)" [disabled]="isEditing"
+                matTooltip="Edit review" [matTooltipPosition]="'below'">
+                <mat-icon>edit</mat-icon>
+            </button>
+            &nbsp;
+            <button mat-icon-button mat-raised-button color="warn" (click)="onDelete(element.key)"
+                [disabled]="isDeleting" matTooltip="Delete review" [matTooltipPosition]="'below'">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <mat-spinner color="warn" [diameter]="30" *ngIf="isDeleting"></mat-spinner>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
