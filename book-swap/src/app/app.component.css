@@ -24,3 +24,7 @@
   a span {
     padding-left: 10px;
   }
+
+  .app-name {
+    flex: 1 1 auto;
+  }

@@ -11,6 +11,7 @@ import { filter } from 'rxjs/operators';
 export class AppComponent implements OnInit {
   title = 'book-swap';
   userIsLoggedIn = false;
+  loggedInUserFullName: string;
 
   constructor(private authService: AuthService, private router: Router) {
     router.events.pipe(
@@ -27,11 +28,18 @@ export class AppComponent implements OnInit {
 
   checkUserIsLoggedIn() {
     this.authService.getUserIsLoggedIn()
-      .subscribe((response: boolean) => this.userIsLoggedIn = response);
+      .subscribe((response: boolean) => {
+        this.userIsLoggedIn = response;
+
+        if (this.userIsLoggedIn) {
+          this.loggedInUserFullName = JSON.parse(localStorage.getItem('loggedInUserFullName'));
+        }
+      });
   }
 
   logOut() {
     this.authService.logoutUser();
+    this.loggedInUserFullName = null;
     console.log('Redirecting to Login...');
     this.router.navigate(['Login']);
   }

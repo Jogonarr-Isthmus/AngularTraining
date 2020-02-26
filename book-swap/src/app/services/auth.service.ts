@@ -44,6 +44,7 @@ export class AuthService {
 
   logoutUser(): void {
     localStorage.removeItem('loggedInUserKey');
+    localStorage.removeItem('loggedInUserFullName');
   }
 
   // logoutUser(): Observable<any> {
